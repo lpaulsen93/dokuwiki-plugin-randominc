@@ -422,17 +422,22 @@ class helper_plugin_randominc extends DokuWiki_Plugin { // DokuWiki_Helper_Plugi
 
     /** 
      * Remove TOC, section edit buttons and tags
-     */ 
+     */
     function _cleanXHTML($xhtml) {
+        // remove toc
+        // remove section edit buttons
+        // remove category tags
         $replace = array( 
-            '!<div class="toc">.*?(</div>\n</div>)!s'   => '', // remove toc 
-            '#<!-- SECTION "(.*?)" \[(\d+-\d*)\] -->#e' => '', // remove section edit buttons 
-            '!<div class="tags">.*?(</div>)!s'          => '', // remove category tags 
+            '!<div class="toc">.*?(</div>\n</div>)!s',
+            '#<!-- SECTION "(.*?)" \[(\d+-\d*)\] -->#',
+            '!<div class="tags">.*?(</div>)!s',
         );
         if ($this->clevel) {
             $replace['#<div class="footnotes">#s'] = '<div class="footnotes level'.$this->clevel.'">';
         }
-        $xhtml = preg_replace(array_keys($replace), array_values($replace), $xhtml);
+        $xhtml = preg_replace_callback($replace,
+                                       function ($m) { return ''; },
+                                       $xhtml);
         return $xhtml; 
     }
 
