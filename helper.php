@@ -588,6 +588,13 @@ class helper_plugin_randominc extends DokuWiki_Plugin { // DokuWiki_Helper_Plugi
         }
         return '<div class="'.$class.'">'.DOKU_LF.DOKU_TAB.$ret.DOKU_LF.'</div>'.DOKU_LF;
     }
+
+    /**
+     * Clear list of pages
+     */
+    function _clearPages() {
+        $this->pages = array();
+    }
 }
 
 //Setup VIM: ex: et ts=4 enc=utf-8 :

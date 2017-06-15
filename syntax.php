@@ -126,7 +126,8 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         } elseif ($mode == 'metadata') {
             // for metadata renderer
             if (!$flg_macro) $renderer->meta['relation']['haspart'][$an_id] = $exists;
-            $include->pages = array(); // clear filechain - important!
+            // clear filechain - important!
+            $include->_clearPages();
 
             return true;
         }
