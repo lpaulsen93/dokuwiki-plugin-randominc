@@ -41,18 +41,7 @@ class helper_plugin_randominc extends DokuWiki_Plugin { // DokuWiki_Helper_Plugi
     $this->noheader = 0;
     $this->header   = array();
   }
-  
-  function getInfo(){
-    return array(
-      'author' => 'Vittorio Rigamonti',
-      'email'  => 'rigazilla at gmail dot com',
-      'date'   => '2007-12-20',
-      'name'   => 'Random Include Plugin (helper class)',
-      'desc'   => 'Functions to randomically include another page in a wiki page',
-      'url'    => '',
-    );
-  }
-  
+
   function getMethods(){
     $result = array();
     $result[] = array(

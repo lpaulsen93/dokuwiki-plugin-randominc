@@ -17,22 +17,8 @@ require_once(DOKU_PLUGIN.'action.php');
  * need to inherit from this class
  */
 class action_plugin_randominc extends DokuWiki_Action_Plugin {
- 
+
     var $supportedModes = array('xhtml');
- 
-    /**
-     * return some info
-     */
-    function getInfo(){
-      return array(
-        'author' => 'Christopher Smith',
-        'email'  => 'chris@jalakai.co.uk',
-        'date'   => '2006-09-20',
-        'name'   => 'Include Plugin',
-        'desc'   => 'Improved cache handling for included pages',
-        'url'    => 'http://wiki.splitbrain.org/plugin:include',
-      );
-    }
     
     /**
      * plugin should use this method to register its handlers with the dokuwiki's event controller
