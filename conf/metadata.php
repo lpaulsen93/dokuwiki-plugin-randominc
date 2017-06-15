@@ -1,7 +1,7 @@
 <?php
 /**
  * Metadata for configuration manager plugin
- * Additions for the Include Plugin
+ * Additions for the Random Include Plugin
  *
  * @author    Esther Brunner <wikidesign@gmail.com>
  */

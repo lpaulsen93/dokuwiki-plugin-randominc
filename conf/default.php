@@ -1,6 +1,6 @@
 <?php
 /**
- * Options for the Random_inc Plugin
+ * Options for the Random Include Plugin
  */
 $conf['firstseconly']  = 0;      // limit entries on main blog page to first section
 $conf['showtaglogos']  = 0;      // display image for first tag
