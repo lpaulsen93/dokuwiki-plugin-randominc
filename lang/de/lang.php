@@ -1,12 +1,12 @@
 <?php
 /**
- * English language file
+ * German language file
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * @author     Esther Brunner <wikidesign@gmail.com>
+ * @author     LarsDW223
  */
 
 // custom language strings for the plugin
-$lang['readmore']   = '→ Read more...';
+$lang['readmore']   = '→ Weiter lesen...';
 
 //Setup VIM: ex: et ts=2 enc=utf-8 :
