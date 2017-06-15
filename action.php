@@ -19,7 +19,7 @@ require_once(DOKU_PLUGIN.'action.php');
  */
 class action_plugin_randominc extends DokuWiki_Action_Plugin {
 
-    var $supportedModes = array('xhtml');
+    protected $supportedModes = array('xhtml');
     
     /**
      * plugin should use this method to register its handlers with the dokuwiki's event controller

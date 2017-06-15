@@ -13,23 +13,23 @@ if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC.'lib/plugins/');
 
 class helper_plugin_randominc extends DokuWiki_Plugin { // DokuWiki_Helper_Plugin
 
-    var $pages     = array();   // filechain of included pages
-    var $page      = array();   // associative array with data about the page to include
-    var $ins       = array();   // instructions array
-    var $doc       = '';        // the final output XHTML string
-    var $mode      = 'section'; // inclusion mode: 'page' or 'section'
-    var $clevel    = 0;         // current section level
-    var $firstsec  = 0;         // show first section only
-    var $editbtn   = 1;         // show edit button
-    var $footer    = 1;         // show metaline below page
-    var $noheader  = 0;         // omit header
-    var $header    = array();   // included page / section header
-    var $renderer  = NULL;      // DokuWiki renderer object
-    var $max_width = '';        // Max width
-    var $max_height= '';        // Max height
+    protected $pages     = array();   // filechain of included pages
+    protected $page      = array();   // associative array with data about the page to include
+    protected $ins       = array();   // instructions array
+    protected $doc       = '';        // the final output XHTML string
+    protected $mode      = 'section'; // inclusion mode: 'page' or 'section'
+    protected $clevel    = 0;         // current section level
+    protected $firstsec  = 0;         // show first section only
+    protected $editbtn   = 1;         // show edit button
+    protected $footer    = 1;         // show metaline below page
+    protected $noheader  = 0;         // omit header
+    protected $header    = array();   // included page / section header
+    protected $renderer  = NULL;      // DokuWiki renderer object
+    protected $max_width = '';        // Max width
+    protected $max_height= '';        // Max height
 
     // private variables
-    var $_offset   = NULL;
+    protected $_offset   = NULL;
 
     /**
      * Constructor loads some config settings
