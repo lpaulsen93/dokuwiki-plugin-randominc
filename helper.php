@@ -529,8 +529,9 @@ class helper_plugin_randominc extends DokuWiki_Plugin { // DokuWiki_Helper_Plugi
         if ($this->getConf('showdate')) {
             $date = ($page['date'] ? $page['date'] : $meta['date']['created']);
             if ($date)
-                $ret[] = '<abbr class="published" title="'.gmdate('Y-m-d\TH:i:s\Z', $date).'">'.
-                date($conf['dformat'], $date).'</abbr>';
+                $ret[] = '<abbr class="published" title="'.strftime('%Y-%m-%dT%H:%M:%SZ', $date).'">'
+                       . strftime($conf['dformat'], $date)
+                       . '</abbr>';
         }
 
         // author
