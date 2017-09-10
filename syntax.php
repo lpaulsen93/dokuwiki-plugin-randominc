@@ -59,6 +59,9 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         $data = array();
         search($data,$dir,'search_allpages',array('ns' => $ns));
 
+        if (count($data) == 0) {
+            return '';
+        }
         $page = $data[array_rand($data, 1)][id];
         return $page;
     }
@@ -94,6 +97,10 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         resolve_pageid(getNS($ID), $id, $exists); // resolve shortcuts
         $ns=getNS($id.':dummy');    
         $page = $this->_randompage($ns);
+        if (empty($page)) {
+            msg($this->getLang('nopagemsg'));
+            return true;
+        }
         $an_id=$ns.':'.$page;
         resolve_pageid(getNS($ID), $an_id, $exists); // resolve shortcuts
         $page = $an_id;

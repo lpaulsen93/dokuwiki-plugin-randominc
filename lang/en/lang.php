@@ -8,5 +8,6 @@
 
 // custom language strings for the plugin
 $lang['readmore']   = '→ Read more...';
+$lang['nopagemsg']  = 'randominc: no page found.';
 
 //Setup VIM: ex: et ts=2 enc=utf-8 :
