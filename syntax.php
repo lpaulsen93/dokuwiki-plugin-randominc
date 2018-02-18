@@ -123,7 +123,14 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         $this->getFlags($flags, $flagsarray);
 
         if (!$this->helper)
+        {
             $this->helper = plugin_load('helper', 'include');
+            if (!$this->helper)
+            {
+                msg($this->getLang('plugin_include_failure'), -1);
+                return true;
+            }
+        }
         $flags = $this->helper->get_flags($flags);
 
         $pages = $this->helper->_get_included_pages($mode, $page, $sect, $parent_id, $flags);
