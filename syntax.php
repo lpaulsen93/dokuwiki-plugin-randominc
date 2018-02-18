@@ -39,7 +39,7 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         return array($include, $id, cleanID($section), explode('&', $flags), $pos);
     }
 
-    function _randompage($ns) {
+    function _randompage($ns, $depth=0) {
         require_once(DOKU_INC.'inc/search.php');
         global $conf;
         global $ID;
@@ -57,7 +57,7 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         $ns = str_replace('/',':',$ns);
  
         $data = array();
-        search($data,$dir,'search_allpages',array('ns' => $ns));
+        search($data,$dir,'search_allpages',array('ns' => $ns, 'depth' => $depth));
 
         if (count($data) == 0) {
             return '';
@@ -96,7 +96,12 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         $id = $this->_applyMacro($raw_id);
         resolve_pageid(getNS($ID), $id, $exists); // resolve shortcuts
         $ns=getNS($id.':dummy');    
-        $page = $this->_randompage($ns);
+
+        // Get randominc specific flags, the rest will be passed to include plugin
+        $flagsarray = array();
+        $this->getFlags($flags, $flagsarray);
+
+        $page = $this->_randompage($ns, $flagsarray['depth']);
         if (empty($page)) {
             msg($this->getLang('nopagemsg'));
             return true;
@@ -117,10 +122,6 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
                 $sect = NULL;
             break;
         }
-
-        // Get randominc specific flags, the rest will be passed to include plugin
-        $flagsarray = array();
-        $this->getFlags($flags, $flagsarray);
 
         if (!$this->helper)
         {
@@ -239,6 +240,7 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
      * Get randominc specific flags
      */
     protected function getFlags($flags, &$flagsarray) {
+        $flagsarray['depth'] = 0;
         foreach ($flags as $flag) {
             if (!(strncmp($flag,'max-width',9) || strpos($flag,';')))
             {
@@ -247,6 +249,14 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
             if (!(strncmp($flag,'max-height',10) || strpos($flag,';')))
             {
                 $flagsarray['max-height'] = $flag;
+            }
+            if (!(strncmp($flag,'depth',5) || strpos($flag,';')))
+            {
+                $equal = strpos($flag,'=');
+                if ($equal !== false)
+                {
+                    $flagsarray['depth'] = substr($flag, $equal+1);
+                }
             }
         }
     }
