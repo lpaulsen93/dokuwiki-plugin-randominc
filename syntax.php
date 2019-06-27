@@ -62,7 +62,7 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         if (count($data) == 0) {
             return '';
         }
-        $page = $data[array_rand($data, 1)][id];
+        $page = $data[array_rand($data, 1)]['id'];
         return $page;
     }
 
