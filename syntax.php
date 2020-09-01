@@ -222,8 +222,13 @@ class syntax_plugin_randominc extends DokuWiki_Syntax_Plugin {
         global $INFO, $auth;
 
         $user     = $_SERVER['REMOTE_USER'];
-        $userdata = $auth->getUserData($user);
-        $group    = $userdata['grps'][0];
+        if ($auth) {
+            $userdata = $auth->getUserData($user);
+            $group    = $userdata['grps'][0];
+        } else {
+            /* Might happen if called from indexer.php */
+            $group = '';
+        }
 
         $replace = array(
             '@USER@'  => cleanID($user),
